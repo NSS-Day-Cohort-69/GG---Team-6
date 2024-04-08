@@ -10,5 +10,19 @@ display the users guess back to the screen*/
 
 Console.WriteLine("Please guess the Secret Number!");
 int response = int.Parse(Console.ReadLine()!.Trim());
+int secretNumber = 42;
+CompareTheNumber();
+/*we need to compare the users number to the secret number
+ we need a function to handle this*/
 
-Console.WriteLine($"You chose: {response}");
+void CompareTheNumber()
+{
+    if (response == secretNumber)
+    {
+        Console.WriteLine("You guessed right!!!");
+    }
+    else
+    {
+        Console.WriteLine("You failed! Guess again!");
+    }
+}
