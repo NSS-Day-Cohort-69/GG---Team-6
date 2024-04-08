@@ -9,20 +9,33 @@ display the users guess back to the screen*/
 
 
 Console.WriteLine("Please guess the Secret Number!");
-int response = int.Parse(Console.ReadLine()!.Trim());
-int secretNumber = 42;
-CompareTheNumber();
+string? choice = null;
+string secretNumber = "42";
+int Count = 0;
+while (secretNumber != choice && Count <= 3)
+{
+    CompareTheNumber();
+
+
+}
 /*we need to compare the users number to the secret number
  we need a function to handle this*/
 
 void CompareTheNumber()
 {
-    if (response == secretNumber)
+    choice = Console.ReadLine()!.Trim();
+    if (choice == secretNumber)
     {
         Console.WriteLine("You guessed right!!!");
     }
-    else
+    else if (Count <= 2)
     {
         Console.WriteLine("You failed! Guess again!");
+        Count++;
+    }
+    else
+    {
+        Console.WriteLine("You failed! Goodbye!");
+        Count++;
     }
 }
