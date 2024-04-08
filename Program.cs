@@ -7,12 +7,20 @@ Display a prompt for the users guess
 take the users guess as an input and save it to a variable
 display the users guess back to the screen*/
 
-
+// We are gonna need the random number, and display the number of guesses they have left.
+Random random = new Random();
+int randomNumber = 0;
+while (randomNumber == 0)
+{
+    int chosenRandomNumber = random.Next(1, 100);
+    randomNumber = chosenRandomNumber;
+}
+Console.WriteLine(randomNumber);
 Console.WriteLine("Please guess the Secret Number!");
-string? choice = null;
-string secretNumber = "42";
-int Count = 0;
-while (secretNumber != choice && Count <= 3)
+int choice = 0;
+int secretNumber = randomNumber;
+int Count = 4;
+while (secretNumber != choice && Count > 0)
 {
     CompareTheNumber();
 
@@ -23,19 +31,18 @@ while (secretNumber != choice && Count <= 3)
 
 void CompareTheNumber()
 {
-    choice = Console.ReadLine()!.Trim();
+    choice =int.Parse(Console.ReadLine()!.Trim());
+    Count--;
     if (choice == secretNumber)
     {
         Console.WriteLine("You guessed right!!!");
     }
-    else if (Count <= 2)
+    else if (Count >= 1)
     {
-        Console.WriteLine($"You guessed {choice}, That was wrong! Guess again!");
-        Count++;
+        Console.WriteLine($"You guessed {choice}, you have {Count} more guesses left, Guess again!");
     }
     else
     {
         Console.WriteLine("You failed! Goodbye!");
-        Count++;
     }
 }
