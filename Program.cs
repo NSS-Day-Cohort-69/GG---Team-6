@@ -30,7 +30,7 @@ void CompareTheNumber()
     }
     else if (Count <= 2)
     {
-        Console.WriteLine("You failed! Guess again!");
+        Console.WriteLine($"You guessed {choice}, That was wrong! Guess again!");
         Count++;
     }
     else
