@@ -39,10 +39,25 @@ void CompareTheNumber()
     }
     else if (Count >= 1)
     {
-        Console.WriteLine($"You guessed {choice}, you have {Count} more guesses left, Guess again!");
+        DetermineDifference();
+        Console.WriteLine($"Your choice was {choice}, you have {Count} more guesses left, Guess again!");
     }
     else
     {
         Console.WriteLine("You failed! Goodbye!");
+    }
+}
+// program should inform user if their guess was too high or too low
+// if else statement?
+// if (choice > secretNumber) {Console.WriteLine("Your guess was too low!)}
+void DetermineDifference()
+{
+    if (choice > secretNumber)
+    {
+        Console.WriteLine("You guessed too high!");
+    }
+    else
+    {
+        Console.WriteLine("You guessed too low!");
     }
 }
