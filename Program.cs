@@ -16,15 +16,14 @@ while (randomNumber == 0)
     randomNumber = chosenRandomNumber;
 }
 Console.WriteLine(randomNumber);
-Console.WriteLine("Please guess the Secret Number!");
 int choice = 0;
 int secretNumber = randomNumber;
-int Count = 4;
+int Count = 0;
+Menu();
+Console.WriteLine("Please guess the Secret Number!");
 while (secretNumber != choice && Count > 0)
 {
     CompareTheNumber();
-
-
 }
 /*we need to compare the users number to the secret number
  we need a function to handle this*/
@@ -61,3 +60,56 @@ void DetermineDifference()
         Console.WriteLine("You guessed too low!");
     }
 }
+// Implement a menu function
+void Menu()
+{
+    int mode = 0;
+    while (mode == 0)
+    {
+    Console.WriteLine(@"Welcome to Guessing Game! Please Pick a difficulty level:
+                            1. Easy
+                            2. Medium
+                            3. Hard");
+    mode = int.Parse(Console.ReadLine());
+    if (mode == 1)
+    {
+        Count = 8;
+    }
+    else if (mode == 2)
+    {
+        Count = 6;
+    }
+    else if (mode == 3)
+    {
+        Count = 4;
+    }
+    }
+};
+/* @Welcome to Guessing Game! Please Pick a difficulty level:
+    1. Easy
+    2. Medium
+    3. Hard
+
+    while (mode == 0)
+    {
+        display menu
+        readline for user's input
+    }
+    if user chooses easy {
+        make count equal 8
+    }
+    if user chooses medium {
+        count equal 6
+    }
+    if user chooses hard {
+        count equal 4
+    }
+*/
+// options will be 1. Easy, 2. Medium, 3. Hard
+// Whatever choice they make determines how many choices the user gets
+// for easy, the user gets 8 choices
+// for medium, the user gets 6 choices
+// for hard, the user gets 4 choices
+
+
+// LEFT OFF AT CHANGING COUNT TO RESPECTIVE MODE
