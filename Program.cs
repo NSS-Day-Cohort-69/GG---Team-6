@@ -14,31 +14,31 @@ Random random = new Random();
 
 int chosenRandomNumber = random.Next(1, 100);
 
-// Console.WriteLine(randomNumber);
+Console.WriteLine(chosenRandomNumber);
 int choice = 0;
 
 int Count = 0;
-Menu();
+SetGuessCount(ReadDifficultyLevel());
 while (chosenRandomNumber != choice && Count > 0)
 {
     Console.WriteLine("Please guess the Secret Number!");
-    CompareTheNumber();
+    CompareTheNumber(Count, chosenRandomNumber, choice);
 }
 /*we need to compare the users number to the secret number
  we need a function to handle this*/
 
-void CompareTheNumber()
+void CompareTheNumber(int Count, int secret, int choice)
 {
     choice = int.Parse(Console.ReadLine()!.Trim());
     Count--;
-    if (choice == chosenRandomNumber)
+    if (choice == secret)
     {
         Console.WriteLine("You guessed right!!!");
     }
     else if (Count >= 1)
     {
-        DetermineDifference(choice, chosenRandomNumber);
-        Console.WriteLine($"Your choice was {choice}, you have {Count} more guesses left, Guess again!");
+        ProvideNumberFeedback(choice, chosenRandomNumber);
+        Console.WriteLine($"Your choice was {choice}, you have {Count} more guesses left.");
     }
     else
     {
@@ -48,15 +48,15 @@ void CompareTheNumber()
 // program should inform user if their guess was too high or too low
 // if else statement?
 // if (choice > secretNumber) {Console.WriteLine("Your guess was too low!)}
-void DetermineDifference(int choice, int secretNumber)
+void ProvideNumberFeedback(int choice, int secretNumber)
 {
     if (choice > secretNumber)
     {
-        Console.WriteLine("You guessed too high!");
+        Console.WriteLine("You guessed too high! Guess again!");
     }
     else
     {
-        Console.WriteLine("You guessed too low!");
+        Console.WriteLine("You guessed too low! Guess again!");
     }
 }
 // Implement a menu function
@@ -71,37 +71,49 @@ int ReadDifficultyLevel()
                             3. Hard
                             4. Cheater Mode");
         mode = int.Parse(Console.ReadLine());
-        if (mode == 1)
-        {
-            Count = 8;
-        }
-        else if (mode == 2)
-        {
-            Count = 6;
-        }
-        else if (mode == 3)
-        {
-            Count = 4;
-        }
-        else if (mode == 4)
-        {
-            CheaterMode();
-        }
     }
+    return mode;
+}
+
+void SetGuessCount(int mode)
+{
+    if (mode == 1)
+    {
+        Count = 8;
+    }
+    else if (mode == 2)
+    {
+        Count = 6;
+    }
+    else if (mode == 3)
+    {
+        Count = 4;
+    }
+    else if (mode == 4)
+    {
+        DisplayCheaterModeGreeting();
+        // choice = int.Parse(Console.ReadLine()!.Trim());
+        CheaterMode(choice, chosenRandomNumber);
+    }
+
+
 };
 
-void CheaterMode()
+void CheaterMode(int choice, int chosenRandomNumber)
+{
+    while (chosenRandomNumber != choice)
+    {
+        choice = int.Parse(Console.ReadLine()!.Trim());
+        ProvideNumberFeedback(choice, chosenRandomNumber);
+
+    }
+    Console.WriteLine("You guessed right!!");
+};
+
+void DisplayCheaterModeGreeting()
 {
     Console.WriteLine("Welcome to Cheater Mode! You guess until you get it right!");
     Console.WriteLine("Please guess the Secret Number!");
-    int choice = int.Parse(Console.ReadLine()!.Trim());
-    while (secretNumber != choice)
-    {
-        DetermineDifference(choice, secretNumber);
-        Console.WriteLine($"Your choice was {choice}. Guess again!");
-        choice = int.Parse(Console.ReadLine()!.Trim());
-    }
-    Console.WriteLine("You guessed right!!");
 };
 /* @Welcome to Guessing Game! Please Pick a difficulty level:
     1. Easy
