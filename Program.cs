@@ -9,18 +9,17 @@ display the users guess back to the screen*/
 
 // We are gonna need the random number, and display the number of guesses they have left.
 Random random = new Random();
-int randomNumber = 0;
-while (randomNumber == 0)
-{
-    int chosenRandomNumber = random.Next(1, 100);
-    randomNumber = chosenRandomNumber;
-}
+
+
+
+int chosenRandomNumber = random.Next(1, 100);
+
 // Console.WriteLine(randomNumber);
 int choice = 0;
-int secretNumber = randomNumber;
+
 int Count = 0;
 Menu();
-while (secretNumber != choice && Count > 0)
+while (chosenRandomNumber != choice && Count > 0)
 {
     Console.WriteLine("Please guess the Secret Number!");
     CompareTheNumber();
@@ -30,15 +29,15 @@ while (secretNumber != choice && Count > 0)
 
 void CompareTheNumber()
 {
-    choice =int.Parse(Console.ReadLine()!.Trim());
+    choice = int.Parse(Console.ReadLine()!.Trim());
     Count--;
-    if (choice == secretNumber)
+    if (choice == chosenRandomNumber)
     {
         Console.WriteLine("You guessed right!!!");
     }
     else if (Count >= 1)
     {
-        DetermineDifference(choice, secretNumber);
+        DetermineDifference(choice, chosenRandomNumber);
         Console.WriteLine($"Your choice was {choice}, you have {Count} more guesses left, Guess again!");
     }
     else
@@ -61,33 +60,33 @@ void DetermineDifference(int choice, int secretNumber)
     }
 }
 // Implement a menu function
-void Menu()
+int ReadDifficultyLevel()
 {
     int mode = 0;
     while (mode == 0)
     {
-    Console.WriteLine(@"Welcome to Guessing Game! Please Pick a difficulty level:
+        Console.WriteLine(@"Welcome to Guessing Game! Please Pick a difficulty level:
                             1. Easy
                             2. Medium
                             3. Hard
                             4. Cheater Mode");
-    mode = int.Parse(Console.ReadLine());
-    if (mode == 1)
-    {
-        Count = 8;
-    }
-    else if (mode == 2)
-    {
-        Count = 6;
-    }
-    else if (mode == 3)
-    {
-        Count = 4;
-    }
-    else if (mode == 4)
-    {
-        CheaterMode();
-    }
+        mode = int.Parse(Console.ReadLine());
+        if (mode == 1)
+        {
+            Count = 8;
+        }
+        else if (mode == 2)
+        {
+            Count = 6;
+        }
+        else if (mode == 3)
+        {
+            Count = 4;
+        }
+        else if (mode == 4)
+        {
+            CheaterMode();
+        }
     }
 };
 
