@@ -19,7 +19,7 @@ Console.WriteLine(randomNumber);
 int choice = 0;
 int secretNumber = randomNumber;
 int Count = 0;
-Menu();
+SetGuessCount(ReadDifficultyLevel());
 Console.WriteLine("Please guess the Secret Number!");
 while (secretNumber != choice && Count > 0)
 {
@@ -30,7 +30,7 @@ while (secretNumber != choice && Count > 0)
 
 void CompareTheNumber()
 {
-    choice =int.Parse(Console.ReadLine()!.Trim());
+    choice = int.Parse(Console.ReadLine()!.Trim());
     Count--;
     if (choice == secretNumber)
     {
@@ -61,16 +61,21 @@ void DetermineDifference()
     }
 }
 // Implement a menu function
-void Menu()
+int ReadDifficultyLevel()
 {
     int mode = 0;
     while (mode == 0)
     {
-    Console.WriteLine(@"Welcome to Guessing Game! Please Pick a difficulty level:
+        Console.WriteLine(@"Welcome to Guessing Game! Please Pick a difficulty level:
                             1. Easy
                             2. Medium
                             3. Hard");
-    mode = int.Parse(Console.ReadLine());
+        mode = int.Parse(Console.ReadLine());
+    }
+    return mode;
+};
+void SetGuessCount(int mode)
+{
     if (mode == 1)
     {
         Count = 8;
@@ -82,7 +87,6 @@ void Menu()
     else if (mode == 3)
     {
         Count = 4;
-    }
     }
 };
 /* @Welcome to Guessing Game! Please Pick a difficulty level:
