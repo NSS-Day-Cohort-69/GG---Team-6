@@ -9,18 +9,14 @@ display the users guess back to the screen*/
 
 // We are gonna need the random number, and display the number of guesses they have left.
 Random random = new Random();
-int randomNumber = 0;
-while (randomNumber == 0)
-{
+
     int chosenRandomNumber = random.Next(1, 100);
-    randomNumber = chosenRandomNumber;
-}
-Console.WriteLine(randomNumber);
+
+Console.WriteLine(chosenRandomNumber);
 Console.WriteLine("Please guess the Secret Number!");
 int choice = 0;
-int secretNumber = randomNumber;
 int Count = 4;
-while (secretNumber != choice && Count > 0)
+while (chosenRandomNumber != choice && Count > 0)
 {
     CompareTheNumber();
 
@@ -33,13 +29,13 @@ void CompareTheNumber()
 {
     choice =int.Parse(Console.ReadLine()!.Trim());
     Count--;
-    if (choice == secretNumber)
+    if (choice == chosenRandomNumber)
     {
         Console.WriteLine("You guessed right!!!");
     }
     else if (Count >= 1)
     {
-        DetermineDifference();
+        ProvideNumberFeedback();
         Console.WriteLine($"Your choice was {choice}, you have {Count} more guesses left, Guess again!");
     }
     else
@@ -50,9 +46,9 @@ void CompareTheNumber()
 // program should inform user if their guess was too high or too low
 // if else statement?
 // if (choice > secretNumber) {Console.WriteLine("Your guess was too low!)}
-void DetermineDifference()
+void ProvideNumberFeedback()
 {
-    if (choice > secretNumber)
+    if (choice > chosenRandomNumber)
     {
         Console.WriteLine("You guessed too high!");
     }
