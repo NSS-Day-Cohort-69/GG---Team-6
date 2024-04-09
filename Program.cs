@@ -14,28 +14,26 @@ string secretNumber = "42";
 int Count = 0;
 while (secretNumber != choice && Count <= 3)
 {
-    CompareTheNumber();
-
+    choice = Console.ReadLine()!.Trim();
+    CompareTheNumber(Count, secretNumber, choice);
+    Count++;
 
 }
 /*we need to compare the users number to the secret number
  we need a function to handle this*/
 
-void CompareTheNumber()
+void CompareTheNumber(int Count, string secret, string choice)
 {
-    choice = Console.ReadLine()!.Trim();
-    if (choice == secretNumber)
+    if (choice == secret)
     {
         Console.WriteLine("You guessed right!!!");
     }
     else if (Count <= 2)
     {
         Console.WriteLine($"You guessed {choice}, That was wrong! Guess again!");
-        Count++;
     }
     else
     {
         Console.WriteLine("You failed! Goodbye!");
-        Count++;
     }
 }
