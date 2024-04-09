@@ -34,7 +34,7 @@ void CompareTheNumber(int Count, int secret, int choice)
     }
     else if (Count >= 1)
     {
-        ProvideNumberFeedback();
+        ProvideNumberFeedback(choice, chosenRandomNumber);
         Console.WriteLine($"Your choice was {choice}, you have {Count} more guesses left, Guess again!");
     }
     else
@@ -45,7 +45,7 @@ void CompareTheNumber(int Count, int secret, int choice)
 // program should inform user if their guess was too high or too low
 // if else statement?
 // if (choice > secretNumber) {Console.WriteLine("Your guess was too low!)}
-void ProvideNumberFeedback()
+void ProvideNumberFeedback(int choice, int chosenRandomNumber)
 {
     if (choice > chosenRandomNumber)
     {
